@@ -69,6 +69,22 @@ revenda-bebidas-api/
 
 ---
 
+📤 Entrega de pedidos à Ambev
+Para garantir a resiliência no envio dos pedidos à Ambev, a aplicação utiliza uma arquitetura baseada em fila SQS (Amazon Simple Queue Service).
+
+Como funciona
+O pedido do cliente é recebido e validado pela API.
+
+Em vez de enviar diretamente para a Ambev, o pedido é colocado na fila SQS.
+
+Um worker (JobIntegrationAmbve) consome essa fila e realiza o envio à API da Ambev.
+
+Se a API estiver indisponível, a mensagem permanece na fila até que o envio seja bem-sucedido.
+
+Esse mecanismo garante tolerância a falhas, garantia de entrega e desacoplamento entre os serviços, evitando perda de dados em cenários de instabilidade externa.
+
+---
+
 ## 🛠 Tecnologias Utilizadas
 
 - [.NET 8](https://dotnet.microsoft.com/)
