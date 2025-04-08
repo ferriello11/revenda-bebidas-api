@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using Revenda.Domain.Entities;
 using Revenda.Infrastructure.Persistence;
 
 public class ProdutoRepository : IProdutoRepository
@@ -18,7 +19,12 @@ public class ProdutoRepository : IProdutoRepository
 
     public async Task<Produto?> ObterPorIdAsync(int id)
     {
-        return await _context.Produtos.FindAsync(id);
+        var produto = await _context.Produtos.FindAsync(id);
+
+        if (produto == null)
+            return null;
+
+        return produto;
     }
 
     public async Task<IEnumerable<Produto>> ObterTodosAsync()

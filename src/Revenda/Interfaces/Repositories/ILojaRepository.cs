@@ -1,5 +1,4 @@
 using Revenda.Domain.Entities;
-using System.Threading.Tasks;
 
 public interface ILojaRepository
 {

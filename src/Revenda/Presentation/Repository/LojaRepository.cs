@@ -1,4 +1,3 @@
-using System;
 using Microsoft.EntityFrameworkCore;
 using Revenda.Domain.Entities;
 using Revenda.Infrastructure.Persistence;
@@ -28,7 +27,7 @@ public class LojaRepository : ILojaRepository
             .FirstOrDefaultAsync(l => l.Id == id);
 
         if (loja == null)
-            throw new KeyNotFoundException($"Loja com ID {id} não encontrada.");
+            return null;
 
         return loja;
     }

@@ -1,7 +1,5 @@
-using System.Threading.Tasks;
 using Revenda.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
-using System;
 using Revenda.Infrastructure.Persistence;
 
 public class ClienteRepository : IClienteRepository
@@ -13,27 +11,27 @@ public class ClienteRepository : IClienteRepository
         _context = context;
     }
 
-    public async Task<bool> AdicionarAsync(Clientes cliente)
+    public async Task<bool> AdicionarAsync(Cliente cliente)
     {
         if (cliente == null) return false;
 
-        _context.Clientes.Add(cliente);
+        _context.Cliente.Add(cliente);
         return await _context.SaveChangesAsync() > 0 ? true : false;
     }
 
-    public async Task<Clientes> ObterPorIdAsync(int id)
+    public async Task<Cliente> ObterPorIdAsync(int id)
     {
-        var cliente = await _context.Clientes.FindAsync(id);
+        var cliente = await _context.Cliente.FindAsync(id);
 
         if (cliente == null)
-            throw new KeyNotFoundException($"Cliente com ID {id} não encontrado.");
+            return null;
 
         return cliente;
     }
 
-    public async Task<Clientes?> ObterClienteAsync(string? email = null, string? telefone = null)
+    public async Task<Cliente?> ObterClienteAsync(string? email = null, string? telefone = null)
     {
-        return await _context.Clientes
+        return await _context.Cliente
             .FirstOrDefaultAsync(c =>
                 (email != null && c.Email == email) ||
                 (telefone != null && c.Telefone == telefone));

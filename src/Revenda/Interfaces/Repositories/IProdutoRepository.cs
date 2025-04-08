@@ -1,3 +1,5 @@
+using Revenda.Domain.Entities;
+
 public interface IProdutoRepository
 {
     Task<int> AdicionarAsync(Produto produto);

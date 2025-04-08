@@ -1,4 +1,5 @@
 using Revenda.Domain.Entities;
+using SeuProjeto.Services.Interfaces;
 
 public class LojaService : ILojaService
 {

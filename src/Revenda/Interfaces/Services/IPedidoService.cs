@@ -1,7 +1,11 @@
+using Revenda.Domain.Dto;
 using Revenda.Domain.Entities;
 
-public interface IPedidoService
+namespace SeuProjeto.Services.Interfaces
 {
-    Task<Pedido> CriarPedidoAsync(Pedido pedido);
-    Task<Pedido> ObterPorIdAsync(int id);
+    public interface IPedidoService
+    {
+        Task<Pedido> CriarPedidoAsync(PedidoDto pedido);
+        Task<Pedido> ObterPorIdAsync(int id);
+    }
 }

@@ -11,10 +11,10 @@ public class RevendaDbContext : DbContext
     public DbSet<LojaTelefone> LojaTelefones { get; set; }
     public DbSet<Contato> Contatos { get; set; }
     public DbSet<Endereco> Enderecos { get; set; }
-    public DbSet<Clientes> Clientes { get; set; }
+    public DbSet<Cliente> Cliente { get; set; }
     public DbSet<Produto> Produtos { get; set; }
     public DbSet<Pedido> Pedidos { get; set; }
-    public DbSet<ItemPedido> ItensPedido { get; set; }
+    public DbSet<ItemPedido> ItemPedido { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
@@ -45,13 +45,13 @@ public class RevendaDbContext : DbContext
             .OnDelete(DeleteBehavior.Cascade);
 
         modelBuilder.Entity<Pedido>()
-            .HasOne<Clientes>()
+            .HasOne(p => p.Cliente)
             .WithMany()
             .HasForeignKey(p => p.ClienteId)
             .OnDelete(DeleteBehavior.Restrict);
 
         modelBuilder.Entity<ItemPedido>()
-            .HasOne<Produto>()
+            .HasOne(i => i.Produto)
             .WithMany()
             .HasForeignKey(i => i.ProdutoId)
             .OnDelete(DeleteBehavior.Restrict);

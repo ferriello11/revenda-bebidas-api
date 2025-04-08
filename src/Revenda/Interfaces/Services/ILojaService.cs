@@ -1,9 +1,10 @@
 using Revenda.Domain.Entities;
-using System;
-using System.Threading.Tasks;
 
-public interface ILojaService
+namespace SeuProjeto.Services.Interfaces
 {
-    Task<Loja> CriarLojaAsync(Loja loja);
-    Task<Loja> ObterLojaPorIdAsync(int id);
+    public interface ILojaService
+    {
+        Task<Loja> CriarLojaAsync(Loja loja);
+        Task<Loja> ObterLojaPorIdAsync(int id);
+    }
 }

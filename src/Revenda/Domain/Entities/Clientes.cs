@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace Revenda.Domain.Entities
 {
-    public class Clientes
+    public class Cliente
     {
         [JsonIgnore]
         public int Id { get; set; }

@@ -1,3 +1,6 @@
+using Revenda.Domain.Entities;
+using SeuProjeto.Services.Interfaces;
+
 public class ProdutoService : IProdutoService
 {
     private readonly IProdutoRepository _produtoRepository;

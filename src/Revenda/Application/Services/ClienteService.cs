@@ -1,6 +1,5 @@
-using System.Threading.Tasks;
 using Revenda.Domain.Entities;
-
+using SeuProjeto.Services.Interfaces;
 public class ClienteService : IClienteService
 {
     private readonly IClienteRepository _clienteRepository;
@@ -10,8 +9,16 @@ public class ClienteService : IClienteService
         _clienteRepository = clienteRepository;
     }
 
-    public async Task<ApiResponse> CriarClienteAsync(Clientes clientes)
+    public async Task<ApiResponse> CriarClienteAsync(Cliente clientes)
     {
+
+        if (string.IsNullOrWhiteSpace(clientes.Nome) ||
+        string.IsNullOrWhiteSpace(clientes.Email) ||
+        string.IsNullOrWhiteSpace(clientes.Telefone))
+        {
+            return new ApiResponse(false, "Nome, E-mail e Telefone são obrigatórios.");
+        }
+
         var clienteExistente = await _clienteRepository.ObterClienteAsync(clientes.Email, clientes.Telefone);
 
         if (clienteExistente != null)
@@ -24,7 +31,7 @@ public class ClienteService : IClienteService
         return new ApiResponse(true, "Cliente criado com sucesso.");
     }
 
-    public async Task<Clientes> ObterClientePorIdAsync(int id)
+    public async Task<Cliente> ObterClientePorIdAsync(int id)
     {
         return await _clienteRepository.ObterPorIdAsync(id);
     }

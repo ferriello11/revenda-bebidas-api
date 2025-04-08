@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Revenda.Domain.Entities;
+using SeuProjeto.Services.Interfaces;
 
 [ApiController]
 [Route("api/[controller]")]
@@ -23,7 +24,9 @@ public class LojaController : ControllerBase
     public async Task<IActionResult> ObterPorId([FromRoute] int id)
     {
         var loja = await _lojaService.ObterLojaPorIdAsync(id);
-        if (loja == null) return NotFound();
+        if (loja == null)
+            return NotFound(new { mensagem = $"loja com ID {id} não encontrado." });
+
         return Ok(loja);
     }
 }

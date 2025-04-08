@@ -9,13 +9,12 @@ namespace Revenda.Domain.Entities
         [JsonIgnore]
         public int Id { get; set; }
         public int LojaId { get; set; }
-        [JsonIgnore]
-        public Loja Loja { get; set; }
         public int ClienteId { get; set; }
         [JsonIgnore]
-        public Clientes Cliente { get; set; }
-        public List<ItemPedido> Itens { get; set; }
         public TipoPedido TipoPedido { get; set; }
+        public List<ItemPedido> Itens { get; set; }
+        public Loja Loja { get; set; }
+        public Cliente Cliente { get; set; }
     }
 
 }

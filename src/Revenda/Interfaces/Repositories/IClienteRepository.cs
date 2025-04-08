@@ -1,9 +1,8 @@
-using System.Threading.Tasks;
 using Revenda.Domain.Entities;
 
 public interface IClienteRepository
 {
-    Task<bool> AdicionarAsync(Clientes cliente);
-    Task<Clientes> ObterPorIdAsync(int id);
-    Task<Clientes?> ObterClienteAsync(string email, string telefone);
+    Task<bool> AdicionarAsync(Cliente cliente);
+    Task<Cliente> ObterPorIdAsync(int id);
+    Task<Cliente?> ObterClienteAsync(string email, string telefone);
 }
